@@ -6,7 +6,11 @@ const Triangle = ({ animated, className, rolledValue, onClick }) => {
   const base = 96;
   const padding = 2;
   return (
-    <div onClick={onClick} className={animated ? `rotate-die` : null}>
+    <div
+      onClick={onClick}
+      data-testid="4-faces-die"
+      className={animated ? `rotate-die` : null}
+    >
       <svg
         className={animated ? `${className} rotate-die` : className}
         version="1.1"

@@ -3,7 +3,7 @@ import { useDie } from "./hooks/useDie";
 import { Triangle } from "../DieForms";
 
 const dieForms = {
-  4: Triangle
+  4: Triangle,
 };
 
 const Die = ({ className, faces }) => {

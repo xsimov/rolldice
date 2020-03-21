@@ -1,16 +1,17 @@
 import { useState } from "react";
 
-const useDie = faces => {
+const calculateRandomValue = (faces) => Math.floor(Math.random() * faces) + 1;
+
+const useDie = (faces) => {
   const [animated, setAnimated] = useState(false);
-  const [rolledValue, setRolledValue] = useState(
-    Math.ceil(Math.random() * faces)
-  );
+  const [rolledValue, setRolledValue] = useState(calculateRandomValue(faces));
 
   const rollDie = () => {
     setAnimated(true);
     setRolledValue("?");
+
     setTimeout(() => {
-      setRolledValue(Math.ceil(Math.random() * faces));
+      setRolledValue(calculateRandomValue(faces));
       setAnimated(false);
     }, 500);
   };
