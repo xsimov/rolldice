@@ -1,1 +1,1 @@
-export { Triangle } from "./Triangle";
+export * from "./constants";
