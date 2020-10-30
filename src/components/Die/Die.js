@@ -1,9 +1,9 @@
 import React from "react";
 import { useDie } from "./hooks/useDie";
-import { dieFormsByFaces } from "../DieForms";
+import { animatedDiceByFaces } from "../NumberDieForms";
 
 const Die = ({ className, faces }) => {
-  const DieForm = dieFormsByFaces[faces];
+  const DieForm = animatedDiceByFaces[faces];
   const { rolledValue, animated, rollDie } = useDie(faces);
 
   return (

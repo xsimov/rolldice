@@ -1,16 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { animationCss } from "../utils/animationCss";
 
 const Triangle = ({ animated, className, rolledValue, onClick }) => {
   const height = 70;
   const base = 96;
   const padding = 2;
   return (
-    <div
-      onClick={onClick}
-      data-testid="4-faces-die"
-      className={animated ? `rotate-die` : null}
-    >
+    <div onClick={onClick} data-testid="4-faces-die">
       <svg
         className={animated ? `${className} rotate-die` : className}
         version="1.1"
@@ -59,38 +56,8 @@ const Triangle = ({ animated, className, rolledValue, onClick }) => {
   );
 };
 
-const StyledTriangle = styled(Triangle)`
-  & {
-    @-webkit-keyframes rotate-center {
-      0% {
-        -webkit-transform: rotate3d(1, 1, 0, 0deg);
-        transform: rotate3d(1, 1, 0, 0deg);
-      }
-      100% {
-        -webkit-transform: rotate3d(0, 1, 0, -360deg);
-        transform: rotate3d(1, 1, 1, -360deg);
-      }
-    }
-    @keyframes rotate-center {
-      0% {
-        -webkit-transform: rotate3d(1, 1, 0, 0deg);
-        transform: rotate3d(1, 1, 0, 0deg);
-      }
-      50% {
-        -webkit-transform: rotate3d(0, 1, 0, -360deg);
-        transform: rotate3d(1, 1, 1, -360deg);
-      }
-      100% {
-        -webkit-transform: rotate3d(0, 1, 0, -360deg);
-        transform: rotate3d(0, 1, 0, -360deg);
-      }
-    }
-
-    &.rotate-die {
-      animation: rotate-center 1s ease-in-out both;
-      -webkit-animation: rotate-center 1s ease-in-out both;
-    }
-  }
+const AnimatedTriangle = styled(Triangle)`
+  ${animationCss}
 `;
 
-export { StyledTriangle as Triangle };
+export { AnimatedTriangle, Triangle };

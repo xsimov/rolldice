@@ -1,5 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
+import styled from "styled-components";
+import { animationCss } from "../utils/animationCss";
 
 const Square = () => {
   const ref = useRef(null);
@@ -21,8 +23,8 @@ const Square = () => {
 
     animationFn.current = () => {
       requestAnimationFrame(animationFn.current);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      cube.rotation.x += 0.05;
+      cube.rotation.y += 0.05;
       renderer.render(scene, camera);
     };
   }, []);
@@ -39,4 +41,8 @@ const Square = () => {
   );
 };
 
-export { Square };
+const AnimatedSquare = styled(Square)`
+  ${animationCss}
+`;
+
+export { Square, AnimatedSquare };
