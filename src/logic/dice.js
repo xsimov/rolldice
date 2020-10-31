@@ -5,6 +5,8 @@ import {
   increaseFailure,
   increaseDesperation,
   increaseTriumph,
+  increaseDarkSide,
+  increaseLightSide,
   doNothing,
 } from "./operations";
 
@@ -78,6 +80,21 @@ const challengeDie = {
   12: [increaseDesperation],
 };
 
+const forceDie = {
+  1: [increaseDarkSide],
+  2: [increaseDarkSide],
+  3: [increaseDarkSide],
+  4: [increaseDarkSide],
+  5: [increaseDarkSide],
+  6: [increaseDarkSide],
+  7: [increaseDarkSide, increaseDarkSide],
+  8: [increaseLightSide],
+  9: [increaseLightSide],
+  10: [increaseLightSide, increaseLightSide],
+  11: [increaseLightSide, increaseLightSide],
+  12: [increaseLightSide, increaseLightSide],
+};
+
 export {
   benefitDie,
   complicationDie,
@@ -85,4 +102,5 @@ export {
   difficultyDie,
   proficiencyDie,
   challengeDie,
+  forceDie,
 };
