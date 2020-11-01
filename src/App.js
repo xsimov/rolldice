@@ -1,14 +1,12 @@
 import React from "react";
-import { Die } from "./components/Die";
-import styled from "styled-components";
+import MainScreen from "./layouts/MainScreen";
+import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 
-const BigDie = styled(Die)`
-  width: 20rem;
-  height: 20rem;
-`;
-
-function App() {
-  return <BigDie faces={4} />;
-}
+const App = () => (
+  <ThemeProvider>
+    <CSSReset />
+    <MainScreen />
+  </ThemeProvider>
+);
 
 export default App;
