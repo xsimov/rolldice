@@ -1,12 +1,12 @@
 import React, { useReducer } from "react";
-import { SimpleGrid } from "@chakra-ui/core";
-import * as allDice from "../logic/dice";
-import { DieSelector } from "../components/DieSelector";
+import { SimpleGrid, Flex, Button } from "@chakra-ui/core";
+import { DieSelector } from "../DieSelector";
+import { calculateScore, dice as allDice } from "../../logic";
 
 const emptyDiceSet = Object.keys(allDice).reduce(
   (counts, dieName) => ({
     ...counts,
-    [dieName]: { die: allDice[dieName], count: 0 },
+    [dieName]: { faces: allDice[dieName], count: 0, name: dieName },
   }),
   {},
 );
@@ -39,6 +39,7 @@ const DiceSetSelector = ({ addRollResult }) => {
   const [diceSet, dispatch] = useReducer(diceSetActions, emptyDiceSet);
 
   const rollDice = () => {
+    console.log("diceSet before calculare", diceSet);
     const result = calculateScore(diceSet);
     addRollResult(result);
   };

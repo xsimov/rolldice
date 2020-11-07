@@ -45,7 +45,6 @@ const dieImages = {
 };
 
 const getDieImages = (dieName) => {
-  console.log("dieName: ", dieName);
   if (!dieImages[dieName]) console.error("dieName not present: ", dieName);
 
   return dieImages[dieName];

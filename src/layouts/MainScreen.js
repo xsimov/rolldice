@@ -1,5 +1,7 @@
+import React from "react";
 import styled from "styled-components";
-import { Flex, Heading } from "@chakra-ui/core";
+import { Heading } from "@chakra-ui/core";
+import { DiceSetSelector } from "../components/DiceSetSelector";
 import swBackground from "../assets/sw4.jpg";
 
 const NavigationBar = styled.nav`
@@ -22,13 +24,14 @@ const AppName = styled(Heading)`
 `;
 
 const MainScreen = () => {
+  const addRollResult = () => {};
   return (
     <>
       <NavigationBar>
         <AppName>Star Wars Dice Roller</AppName>
       </NavigationBar>
       <main>
-        <DiceSetSelector diceSet={diceSet} />
+        <DiceSetSelector addRollResult={console.log} />
       </main>
     </>
   );
