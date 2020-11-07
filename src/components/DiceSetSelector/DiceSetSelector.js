@@ -1,54 +1,17 @@
 import React, { useReducer } from "react";
 import { SimpleGrid, Flex, Button } from "@chakra-ui/core";
 import { DieSelector } from "../DieSelector";
-import { calculateScore, dice as allDice } from "../../logic";
+import { diceSetActions, emptyDiceSet } from "./diceSetActions";
 
-const emptyDiceSet = Object.keys(allDice).reduce(
-  (counts, dieName) => ({
-    ...counts,
-    [dieName]: { faces: allDice[dieName], count: 0, name: dieName },
-  }),
-  {},
-);
-
-const diceSetActions = (diceSet, { type, dieName, newCount }) => {
-  const die = diceSet[dieName];
-
-  switch (type) {
-    case "increment":
-      return {
-        ...diceSet,
-        [dieName]: { ...die, count: die.count + 1 },
-      };
-    case "decrement":
-      if (die.count === 0) return diceSet;
-
-      return {
-        ...diceSet,
-        [dieName]: { ...die, count: die.count - 1 },
-      };
-    case "setCount":
-      return {
-        ...diceSet,
-        [dieName]: { ...die, count: newCount },
-      };
-  }
-};
-
-const DiceSetSelector = ({ addRollResult }) => {
+const DiceSetSelector = ({ rollDice }) => {
   const [diceSet, dispatch] = useReducer(diceSetActions, emptyDiceSet);
-
-  const rollDice = () => {
-    console.log("diceSet before calculare", diceSet);
-    const result = calculateScore(diceSet);
-    addRollResult(result);
-  };
 
   return (
     <>
       <SimpleGrid columns={2} spacing={4} padding={4}>
         {Object.keys(diceSet).map((dieName) => (
           <DieSelector
+            key={dieName}
             dieName={dieName}
             decrementDie={() => {
               dispatch({ type: "decrement", dieName });
@@ -64,8 +27,15 @@ const DiceSetSelector = ({ addRollResult }) => {
         ))}
       </SimpleGrid>
       <Flex justifyContent="center">
-        <Button variantColor="red" onClick={rollDice}>
+        <Button variantColor="red" onClick={() => rollDice(diceSet)}>
           ROLL!
+        </Button>
+        <Button
+          variantColor="green"
+          variant="outline"
+          onClick={() => dispatch({ type: "clear" })}
+        >
+          Clear dice
         </Button>
       </Flex>
     </>
