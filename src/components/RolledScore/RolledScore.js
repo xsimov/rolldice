@@ -4,7 +4,7 @@ import { Flex, Stack } from "@chakra-ui/core";
 import { SucceededOrFailedText } from "./SucceededOrFailedText";
 import { countsToVisual } from "../../logic";
 
-const RolledScore = ({ score, ...rest }) => {
+const RolledScore = ({ score, roller: rollerName, ...rest }) => {
   const rolledSucceded = score.success > 0;
   const visualResult = countsToVisual(score);
 
@@ -13,6 +13,7 @@ const RolledScore = ({ score, ...rest }) => {
       <SucceededOrFailedText
         rolledSucceded={rolledSucceded}
         diceNotRolled={score.success === undefined}
+        rollerName={rollerName}
       />
       <Flex justifyContent="center">
         {visualResult.map((category, i) => (
