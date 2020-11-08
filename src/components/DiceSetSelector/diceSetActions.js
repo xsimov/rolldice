@@ -31,6 +31,8 @@ const diceSetActions = (diceSet, { type, dieName, newCount }) => {
       };
     case "clear":
       return emptyDiceSet;
+    default:
+      return diceSet;
   }
 };
 
