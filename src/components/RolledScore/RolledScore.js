@@ -1,18 +1,18 @@
 import React from "react";
 import * as scoreImages from "../../scoreImages";
-import { Flex } from "@chakra-ui/core";
+import { Flex, Stack } from "@chakra-ui/core";
 import { SucceededOrFailedText } from "./SucceededOrFailedText";
 import { countsToVisual } from "../../logic";
 
-const RolledResult = ({ result }) => {
-  const rolledSucceded = result.success > 0;
-  const visualResult = countsToVisual(result);
+const RolledScore = ({ score, ...rest }) => {
+  const rolledSucceded = score.success > 0;
+  const visualResult = countsToVisual(score);
 
   return (
-    <>
+    <Stack spacing={4} {...rest}>
       <SucceededOrFailedText
         rolledSucceded={rolledSucceded}
-        diceNotRolled={result.success === undefined}
+        diceNotRolled={score.success === undefined}
       />
       <Flex justifyContent="center">
         {visualResult.map((category, i) => (
@@ -23,8 +23,8 @@ const RolledResult = ({ result }) => {
           />
         ))}
       </Flex>
-    </>
+    </Stack>
   );
 };
 
-export { RolledResult };
+export { RolledScore };

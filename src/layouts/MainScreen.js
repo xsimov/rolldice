@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Heading } from "@chakra-ui/core";
+import { Heading, Stack } from "@chakra-ui/core";
 import { calculateScore } from "../logic";
 import { DiceSetSelector } from "../components/DiceSetSelector";
-import { RolledResult } from "../components/RolledResult";
+import { RolledScore } from "../components/RolledScore";
 import swBackground from "../assets/sw4.jpg";
 
 const NavigationBar = styled.nav`
@@ -25,25 +25,26 @@ const AppName = styled(Heading)`
   font-family: starWars !important;
 `;
 
-// const DestinyPoints = <div />;
+const DestinyPoints = () => <div />;
 
 const MainScreen = () => {
-  const [result, setResult] = useState({});
+  const [score, setScore] = useState({});
+
+  const clearScore = () => setScore({});
+  const rollDice = (diceSet) => {
+    setScore(calculateScore(diceSet));
+  };
 
   return (
     <>
       <NavigationBar>
         <AppName>Star Wars Dice Roller</AppName>
       </NavigationBar>
-      <main>
-        {/* <DestinyPoints /> */}
-        <DiceSetSelector
-          rollDice={(diceSet) => {
-            setResult(calculateScore(diceSet));
-          }}
-        />
-        <RolledResult result={result} />
-      </main>
+      <Stack spacing={8}>
+        <DestinyPoints />
+        <DiceSetSelector rollDice={rollDice} clearResult={clearScore} mb={8} />
+        <RolledScore score={score} />
+      </Stack>
     </>
   );
 };
