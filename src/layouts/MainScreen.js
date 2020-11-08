@@ -1,23 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import styled from "styled-components";
-import {
-  Heading,
-  Input,
-  Stack,
-  Modal,
-  ModalCloseButton,
-  ModalOverlay,
-  ModalHeader,
-  ModalContent,
-  ModalBody,
-  ModalFooter,
-  Button,
-} from "@chakra-ui/core";
+import { Heading, Stack } from "@chakra-ui/core";
 import { useDisclosure } from "@chakra-ui/core";
 import { calculateScore } from "../logic";
 import { DiceSetSelector } from "../components/DiceSetSelector";
 import { RolledScore } from "../components/RolledScore";
+import { IdentificationModal } from "../components/IdentificationModal/IdentificationModal";
+import { Footer } from "../components/Footer/Footer";
 import swBackground from "../assets/sw4.jpg";
 
 const NavigationBar = styled.nav`
@@ -93,35 +83,12 @@ const MainScreen = () => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onCloseModal}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Identification</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <form onSubmit={onCloseModal}>
-              <Input
-                variant="flushed"
-                value={playerName}
-                onChange={(e) => {
-                  setPlayerName(e.target.value);
-                }}
-              />
-            </form>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button
-              disabled={playerName.length < 1}
-              variantColor="green"
-              onClick={onCloseModal}
-            >
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-
+      <IdentificationModal
+        playerName={playerName}
+        setPlayerName={setPlayerName}
+        onCloseModal={onCloseModal}
+        isOpen={isOpen}
+      />
       <NavigationBar>
         <AppName>Star Wars Dice Roller</AppName>
       </NavigationBar>
@@ -130,6 +97,7 @@ const MainScreen = () => {
         <DiceSetSelector rollDice={rollDice} clearResult={clearScore} mb={8} />
         <RolledScore score={score} roller={roller} />
       </Stack>
+      <Footer />
     </>
   );
 };
