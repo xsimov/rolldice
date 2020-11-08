@@ -16,14 +16,15 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.0",
-    "styled-components": "^5.0.1",
-    "three": "^0.115.0"
+    "socket.io": "^3.0.0",
+    "socket.io-client": "^3.0.0",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev:serve": "nodemon -w server server/index.js",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
