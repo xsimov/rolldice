@@ -1,8 +1,9 @@
-const { emit } = require("process");
+const path = require("path");
+const express = require("express");
+const app = express();
+const http = require("http").createServer(app);
 
-const server = require("http").createServer();
-
-const io = require("socket.io")(server, {
+const io = require("socket.io")(http, {
   cors: {
     origin: "*",
     allowedHeaders: ["my-custom-header"],
@@ -25,4 +26,12 @@ io.on("connection", (client) => {
   });
 });
 
-server.listen(3003);
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
+});
+
+http.listen(3000, () => {
+  console.log("listening on *:3000");
+});

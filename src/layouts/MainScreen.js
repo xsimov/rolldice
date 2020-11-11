@@ -36,7 +36,7 @@ const MainScreen = () => {
   const resolvePlayerNamePromise = useRef(() => {});
 
   useEffect(() => {
-    const socket = io(env.SOCKET_URL);
+    const socket = io('http://sw.xsimov.com');
     socketConnection.current = socket;
 
     socket.on("connect", async () => {

@@ -10,6 +10,7 @@
     "@testing-library/react": "^10.0.1",
     "@testing-library/user-event": "^7.1.2",
     "emotion-theming": "^10.0.27",
+    "express": "^4.17.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "object-path": "0.11.5",
     "prettier": "^1.19.1",
@@ -22,7 +23,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "serve": "nodemon -w server server/index.js",
+    "serve:dev": "nodemon server.js",
+    "serve": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen"
   },
