@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev:serve": "nodemon -w server server/index.js",
+    "serve": "nodemon -w server server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen"
   },

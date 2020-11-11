@@ -36,11 +36,10 @@ const MainScreen = () => {
   const resolvePlayerNamePromise = useRef(() => {});
 
   useEffect(() => {
-    const socket = io("http://localhost:3003");
+    const socket = io(env.SOCKET_URL);
     socketConnection.current = socket;
 
     socket.on("connect", async () => {
-      console.log("client connected");
       askPlayerName();
       const name = await new Promise((resolve) => {
         resolvePlayerNamePromise.current = resolve;

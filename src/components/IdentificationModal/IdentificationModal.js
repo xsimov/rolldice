@@ -20,10 +20,11 @@ const IdentificationModal = ({
   const nameInput = useRef(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      nameInput.current.focus();
-    }, 100);
-  }, []);
+    isOpen &&
+      setTimeout(() => {
+        nameInput.current.focus();
+      }, 1000);
+  }, [isOpen]);
 
   return (
     <Modal isOpen={isOpen} onClose={onCloseModal} scrollBehavior="outside">
