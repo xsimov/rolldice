@@ -1,12 +1,14 @@
 import React from "react";
 import MainScreen from "./layouts/MainScreen";
-import { ThemeProvider, CSSReset } from "@chakra-ui/core";
+import { ChakraProvider } from "@chakra-ui/react";
+import { IconContext } from "react-icons";
 
 const App = () => (
-  <ThemeProvider>
-    <CSSReset />
-    <MainScreen />
-  </ThemeProvider>
+  <ChakraProvider>
+    <IconContext.Provider value={{ style: { display: "inline-flex" } }}>
+      <MainScreen />
+    </IconContext.Provider>
+  </ChakraProvider>
 );
 
 export default App;

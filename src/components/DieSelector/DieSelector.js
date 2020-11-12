@@ -6,8 +6,8 @@ import {
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
-} from "@chakra-ui/core";
-import { getDieImages } from "../../dieImages";
+} from "@chakra-ui/react";
+import { getDieImages } from "../../assets/dieImages";
 
 const ClickableLeftAddon = styled(InputLeftAddon)`
   cursor: pointer;
@@ -20,7 +20,6 @@ const ClickableRightAddon = styled(InputRightAddon)`
 `;
 
 const SmallCenteredInput = styled(Input)`
-  width: 4rem;
   text-align: center;
 `;
 
