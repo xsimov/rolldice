@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import styled from "styled-components";
-import { SimpleGrid, Flex, Box, Button } from "@chakra-ui/core";
-import { DieSelector } from "../DieSelector";
+import { SimpleGrid, Flex, Box, Button } from "@chakra-ui/react";
+import { DieSelector } from "../DieSelector/DieSelector";
 import { diceSetActions, emptyDiceSet } from "./diceSetActions";
 
 const RollButton = styled(Button)`
@@ -82,11 +82,9 @@ const DiceSetSelector = ({ rollDice, clearResult, ...rest }) => {
         ))}
       </SimpleGrid>
       <Flex justifyContent="center">
-        <RollButton variantColor="red" onClick={() => rollDice(diceSet)}>
-          ROLL!
-        </RollButton>
+        <RollButton onClick={() => rollDice(diceSet)}>ROLL!</RollButton>
         <Button
-          variantColor="green"
+          colorScheme="green"
           variant="outline"
           onClick={() => {
             clearResult();

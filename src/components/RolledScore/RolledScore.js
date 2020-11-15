@@ -1,6 +1,6 @@
 import React from "react";
 import * as scoreImages from "../../scoreImages";
-import { Flex, Stack } from "@chakra-ui/core";
+import { Flex, Stack } from "@chakra-ui/react";
 import { SucceededOrFailedText } from "./SucceededOrFailedText";
 import { countsToVisual } from "../../logic";
 
