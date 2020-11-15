@@ -1,28 +1,60 @@
+const uuid = require("uuid");
 const path = require("path");
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
 
+let usersDB = {};
+
 const io = require("socket.io")(http, {
   cors: {
     origin: "*",
-    allowedHeaders: ["my-custom-header"],
     credentials: true,
   },
 });
 
+const newToken = () => {
+  const token = uuid.v4();
+
+  if (!usersDB[token]) {
+    return token;
+  }
+
+  return newToken();
+};
+
 io.on("connection", (client) => {
-  client.on("config", (data) => {
-    console.log(`receiving data:`, data, client.id);
+  client.on("credentials", ({ playerName, playerToken }) => {
+    const token = usersDB[playerToken] ? playerToken : newToken();
+
+    const playerWasActive = (usersDB[playerToken] || {}).active;
+
+    this.player = { playerName, playerToken: token, active: true };
+    usersDB[token] = this.player;
+    client.emit("tokenAssigned", this.player);
+
+    if (!playerWasActive) {
+      client.broadcast.emit("playerConnected", this.player);
+    } else {
+      client.broadcast.emit("playerChangedSettings", this.player);
+    }
+
+    client.emit(
+      "playersList",
+      Object.keys(usersDB)
+        .filter((key) => usersDB[key].active)
+        .reduce((accum, key) => [...accum, usersDB[key]], []),
+    );
   });
 
   client.on("rolledDice", (data) => {
-    console.log(`receiving data:`, data);
     client.broadcast.emit("updatedScore", data);
   });
 
   client.on("disconnect", () => {
-    console.log("client disconnected!");
+    usersDB[this.player.playerToken] = { ...this.player, active: false };
+
+    client.broadcast.emit("playerDisconnected", this.player);
   });
 });
 
@@ -33,5 +65,5 @@ app.get("/", (req, res) => {
 });
 
 http.listen(3000, () => {
-  console.log("listening on *:3000");
+  console.log("listening on localhost:3000");
 });
