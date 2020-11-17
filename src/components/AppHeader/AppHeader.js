@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Heading } from '@chakra-ui/react';
+import { Button, Heading, Flex, useColorMode } from '@chakra-ui/react';
 import swBackground from '../../assets/sw4.jpg';
+import { CgDarkMode } from 'react-icons/cg/';
 
 const NavigationBar = styled.nav`
   color: white;
@@ -23,13 +24,25 @@ const AppName = styled(Heading)`
   font-family: starWars !important;
 `;
 
-const AppHeader = ({ openPlayersList }) => (
-  <NavigationBar>
-    <AppName>Star Wars Dice Roller</AppName>
-    <Button colorScheme="blue" onClick={openPlayersList}>
-      Players
-    </Button>
-  </NavigationBar>
-);
+const Flipper = styled(CgDarkMode)`
+  align-self: flex-end;
+  cursor: pointer;
+  color: black;
+`;
+
+const AppHeader = ({ openPlayersList }) => {
+  const { toggleColorMode } = useColorMode();
+  return (
+    <NavigationBar>
+      <AppName>Star Wars Dice Roller</AppName>
+      <Flex>
+        <Button colorScheme="blue" onClick={openPlayersList}>
+          Players
+        </Button>
+        <Flipper onClick={toggleColorMode} />
+      </Flex>
+    </NavigationBar>
+  );
+};
 
 export { AppHeader };

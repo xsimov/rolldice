@@ -1,5 +1,5 @@
 import success from './success.png';
-import despair from './despair.png';
+import desperation from './despair.png';
 import advantage from './advantage.png';
 import failure from './failure.png';
 import disadvantage from './threat.png';
@@ -9,7 +9,7 @@ import darkSide from './force_black.png';
 
 export {
   success,
-  despair,
+  desperation,
   advantage,
   failure,
   disadvantage,

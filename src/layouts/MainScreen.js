@@ -13,8 +13,7 @@ import { RolledScore } from '../components/RolledScore';
 import { SettingsModal } from '../components/SettingsModal/SettingsModal';
 import { AppFooter } from '../components/AppFooter/AppFooter';
 import { AppHeader } from '../components/AppHeader/AppHeader';
-
-const DestinyPoints = () => <div />;
+import { DestinyPoints } from '../components/DestinyPoints/DestinyPoints';
 
 const { NODE_ENV } = process.env;
 const url =
@@ -154,8 +153,8 @@ const MainScreen = () => {
         openSettingsModal={openSettingsModal}
       />
       <AppHeader openPlayersList={openPlayersList} />
-      <Stack spacing={12}>
-        <DestinyPoints />
+      <Stack spacing={12} py={12}>
+        <DestinyPoints playersList={playersList} />
         <DiceSetSelector rollDice={rollDice} clearResult={clearScore} mb={8} />
         <RolledScore score={score} roller={roller} />
       </Stack>
