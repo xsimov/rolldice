@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Link } from "@chakra-ui/react";
-import { FiExternalLink } from "react-icons/fi";
+import React from 'react';
+import { Box, Link } from '@chakra-ui/react';
+import { FiExternalLink } from 'react-icons/fi';
 
 const AppFooter = () => (
   <Box
@@ -12,7 +12,7 @@ const AppFooter = () => (
     bg="black"
     color="white"
   >
-    All credit for the images goes to{" "}
+    All credit for the images goes to{' '}
     <Link href="https://bitbucket.org/Cenix/dice_roller/src/master/" isExternal>
       Cenix's dice roller repo <FiExternalLink />
     </Link>

@@ -8,7 +8,7 @@ import {
   increaseDarkSide,
   increaseLightSide,
   doNothing,
-} from "./operations";
+} from './operations';
 
 const benefitDie = {
   1: [doNothing],

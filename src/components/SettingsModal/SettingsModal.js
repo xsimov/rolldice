@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -12,7 +12,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const SettingsModal = ({
   isOpen,
@@ -39,7 +39,7 @@ const SettingsModal = ({
   const validateAndClose = (e) => {
     e && e.preventDefault();
 
-    if (playerName === "") {
+    if (playerName === '') {
       setFormError(true);
       return;
     }

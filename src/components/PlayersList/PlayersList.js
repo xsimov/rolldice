@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Drawer,
   DrawerContent,
@@ -10,8 +10,8 @@ import {
   ListIcon,
   Heading,
   Button,
-} from "@chakra-ui/react";
-import { GiLightSabers } from "react-icons/gi";
+} from '@chakra-ui/react';
+import { GiLightSabers } from 'react-icons/gi';
 
 const PlayersList = ({
   playersList,

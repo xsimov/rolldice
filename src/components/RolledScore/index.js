@@ -1,3 +1,3 @@
-import { RolledScore } from "./RolledScore";
+import { RolledScore } from './RolledScore';
 
 export { RolledScore };

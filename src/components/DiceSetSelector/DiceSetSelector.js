@@ -1,8 +1,8 @@
-import React, { useReducer } from "react";
-import styled from "styled-components";
-import { SimpleGrid, Flex, Box, Button } from "@chakra-ui/react";
-import { DieSelector } from "../DieSelector/DieSelector";
-import { diceSetActions, emptyDiceSet } from "./diceSetActions";
+import React, { useReducer } from 'react';
+import styled from 'styled-components';
+import { SimpleGrid, Flex, Box, Button } from '@chakra-ui/react';
+import { DieSelector } from '../DieSelector/DieSelector';
+import { diceSetActions, emptyDiceSet } from './diceSetActions';
 
 const RollButton = styled(Button)`
   /* ----------------------------------------------
@@ -69,13 +69,13 @@ const DiceSetSelector = ({ rollDice, clearResult, ...rest }) => {
             key={dieName}
             dieName={dieName}
             decrementDie={() => {
-              dispatch({ type: "decrement", dieName });
+              dispatch({ type: 'decrement', dieName });
             }}
             incrementDie={() => {
-              dispatch({ type: "increment", dieName });
+              dispatch({ type: 'increment', dieName });
             }}
             setDieCount={(newCount) => {
-              dispatch({ type: "setCount", dieName, newCount });
+              dispatch({ type: 'setCount', dieName, newCount });
             }}
             dieCount={diceSet[dieName].count}
           />
@@ -88,7 +88,7 @@ const DiceSetSelector = ({ rollDice, clearResult, ...rest }) => {
           variant="outline"
           onClick={() => {
             clearResult();
-            dispatch({ type: "clear" });
+            dispatch({ type: 'clear' });
           }}
         >
           Clear dice

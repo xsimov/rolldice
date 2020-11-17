@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import {
   Flex,
   Input,
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
-} from "@chakra-ui/react";
-import { getDieImages } from "../../assets/dieImages";
+} from '@chakra-ui/react';
+import { getDieImages } from '../../assets/dieImages';
 
 const ClickableLeftAddon = styled(InputLeftAddon)`
   cursor: pointer;

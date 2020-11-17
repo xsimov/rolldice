@@ -1,6 +1,6 @@
 const inverseOf = {
-  success: "failure",
-  advantage: "disadvantage",
+  success: 'failure',
+  advantage: 'disadvantage',
 };
 
 const countsToVisual = (countsResult) => {

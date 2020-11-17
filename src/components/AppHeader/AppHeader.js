@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { Button, Heading } from "@chakra-ui/react";
-import swBackground from "../../assets/sw4.jpg";
+import React from 'react';
+import styled from 'styled-components';
+import { Button, Heading } from '@chakra-ui/react';
+import swBackground from '../../assets/sw4.jpg';
 
 const NavigationBar = styled.nav`
   color: white;

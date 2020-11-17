@@ -1,24 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import io from "socket.io-client";
-import { Stack } from "@chakra-ui/react";
-import { useDisclosure, useToast } from "@chakra-ui/react";
-import { calculateScore } from "../logic";
+import React, { useEffect, useRef, useState } from 'react';
+import io from 'socket.io-client';
+import { Stack } from '@chakra-ui/react';
+import { useDisclosure, useToast } from '@chakra-ui/react';
+import { calculateScore } from '../logic';
 import {
   readCredentials,
   storeCredentials,
-} from "../externalComunications/storage";
-import { DiceSetSelector } from "../components/DiceSetSelector";
-import { PlayersList } from "../components/PlayersList/PlayersList";
-import { RolledScore } from "../components/RolledScore";
-import { SettingsModal } from "../components/SettingsModal/SettingsModal";
-import { AppFooter } from "../components/AppFooter/AppFooter";
-import { AppHeader } from "../components/AppHeader/AppHeader";
+} from '../externalComunications/storage';
+import { DiceSetSelector } from '../components/DiceSetSelector';
+import { PlayersList } from '../components/PlayersList/PlayersList';
+import { RolledScore } from '../components/RolledScore';
+import { SettingsModal } from '../components/SettingsModal/SettingsModal';
+import { AppFooter } from '../components/AppFooter/AppFooter';
+import { AppHeader } from '../components/AppHeader/AppHeader';
 
 const DestinyPoints = () => <div />;
 
 const { NODE_ENV } = process.env;
 const url =
-  NODE_ENV === "production" ? "http://sw.xsimov.com" : "http://localhost:3000";
+  NODE_ENV === 'production' ? 'http://sw.xsimov.com' : 'http://localhost:3000';
 
 const MainScreen = () => {
   const socketConnection = useRef(undefined);
@@ -28,25 +28,25 @@ const MainScreen = () => {
     const socket = io(url);
     socketConnection.current = socket;
 
-    socket.on("connect", async () => {
+    socket.on('connect', async () => {
       const credentials = readCredentials();
       if (credentials.playerName) {
-        socket.emit("credentials", credentials);
+        socket.emit('credentials', credentials);
         return;
       }
 
       openSettingsModal();
     });
 
-    socket.on("tokenAssigned", (credentials) => {
+    socket.on('tokenAssigned', (credentials) => {
       storeCredentials(credentials);
     });
 
-    socket.on("playersList", (list) => {
+    socket.on('playersList', (list) => {
       setPlayersList(list);
     });
 
-    socket.on("playerConnected", (newPlayer) => {
+    socket.on('playerConnected', (newPlayer) => {
       if (newPlayer.playerToken === readCredentials().playerToken) {
         return;
       }
@@ -54,16 +54,16 @@ const MainScreen = () => {
       setPlayersList((currentPlayers) => [...currentPlayers, newPlayer]);
 
       showNotification({
-        position: "bottom-left",
-        title: "Player connected!",
+        position: 'bottom-left',
+        title: 'Player connected!',
         description: `${newPlayer.playerName} just jumped on board!`,
-        status: "success",
+        status: 'success',
         isClosable: true,
       });
     });
 
     socket.on(
-      "playerChangedSettings",
+      'playerChangedSettings',
       ({ playerToken, playerName: newName }) => {
         setPlayersList((currentPlayers) =>
           currentPlayers.map((player) =>
@@ -75,7 +75,7 @@ const MainScreen = () => {
       },
     );
 
-    socket.on("playerDisconnected", (disconnectedPlayer) => {
+    socket.on('playerDisconnected', (disconnectedPlayer) => {
       if (disconnectedPlayer.playerToken === readCredentials().playerToken) {
         return;
       }
@@ -87,24 +87,24 @@ const MainScreen = () => {
       );
 
       showNotification({
-        position: "bottom-left",
-        title: "Player disconnected!",
+        position: 'bottom-left',
+        title: 'Player disconnected!',
         description: `${disconnectedPlayer.playerName} abandoned the ship!`,
-        status: "warning",
+        status: 'warning',
         isClosable: true,
       });
     });
 
-    socket.on("updatedScore", ({ score, playerName }) => {
+    socket.on('updatedScore', ({ score, playerName }) => {
       setRoller(playerName);
       setScore(score);
     });
   }, []);
 
   const [score, setScore] = useState({});
-  const [playerName, setPlayerName] = useState("");
+  const [playerName, setPlayerName] = useState('');
   const [playersList, setPlayersList] = useState([]);
-  const [roller, setRoller] = useState("");
+  const [roller, setRoller] = useState('');
   const {
     isOpen: isSettingsModalOpen,
     onOpen: openSettingsModal,
@@ -123,16 +123,16 @@ const MainScreen = () => {
     const score = calculateScore(diceSet);
 
     setScore(score);
-    setRoller("You");
+    setRoller('You');
 
-    socketConnection.current.emit("rolledDice", {
+    socketConnection.current.emit('rolledDice', {
       playerName,
       score,
     });
   };
 
   const sendCredentials = (playerName) => {
-    socketConnection.current.emit("credentials", {
+    socketConnection.current.emit('credentials', {
       ...readCredentials(),
       playerName,
     });

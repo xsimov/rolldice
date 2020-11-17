@@ -1,4 +1,4 @@
-import { dice as allDice } from "../../logic";
+import { dice as allDice } from '../../logic';
 
 const emptyDiceSet = Object.keys(allDice).reduce(
   (counts, dieName) => ({
@@ -12,24 +12,24 @@ const diceSetActions = (diceSet, { type, dieName, newCount }) => {
   const die = diceSet[dieName];
 
   switch (type) {
-    case "increment":
+    case 'increment':
       return {
         ...diceSet,
         [dieName]: { ...die, count: die.count + 1 },
       };
-    case "decrement":
+    case 'decrement':
       if (die.count === 0) return diceSet;
 
       return {
         ...diceSet,
         [dieName]: { ...die, count: die.count - 1 },
       };
-    case "setCount":
+    case 'setCount':
       return {
         ...diceSet,
         [dieName]: { ...die, count: newCount },
       };
-    case "clear":
+    case 'clear':
       return emptyDiceSet;
     default:
       return diceSet;

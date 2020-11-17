@@ -1,1 +1,1 @@
-export * from "./DiceSetSelector";
+export * from './DiceSetSelector';

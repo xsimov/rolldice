@@ -1,4 +1,4 @@
-import { splatDiceSetIntoDiceArray } from "./diceDataTypesConversors";
+import { splatDiceSetIntoDiceArray } from './diceDataTypesConversors';
 
 const calculateScore = (diceSet = {}, initialScore = {}) => {
   const dice = splatDiceSetIntoDiceArray(diceSet);

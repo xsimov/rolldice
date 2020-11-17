@@ -1,8 +1,8 @@
-import React from "react";
-import * as scoreImages from "../../scoreImages";
-import { Flex, Stack } from "@chakra-ui/react";
-import { SucceededOrFailedText } from "./SucceededOrFailedText";
-import { countsToVisual } from "../../logic";
+import React from 'react';
+import * as scoreImages from '../../scoreImages';
+import { Flex, Stack } from '@chakra-ui/react';
+import { SucceededOrFailedText } from './SucceededOrFailedText';
+import { countsToVisual } from '../../logic';
 
 const RolledScore = ({ score, roller: rollerName, ...rest }) => {
   const rolledSucceded = score.success > 0;

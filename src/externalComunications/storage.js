@@ -1,5 +1,5 @@
-const nameKey = "SW-credentials-player-name";
-const tokenKey = "SW-credentials-player-token";
+const nameKey = 'SW-credentials-player-name';
+const tokenKey = 'SW-credentials-player-token';
 
 const storeCredentials = ({ playerName, playerToken }) => {
   localStorage.setItem(nameKey, playerName);

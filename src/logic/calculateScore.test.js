@@ -1,5 +1,5 @@
-describe("calculateScore", () => {
-  context("");
+describe('calculateScore', () => {
+  context('');
 });
 
 const calculateScore = ({ dice = [], initialScore }) => {
