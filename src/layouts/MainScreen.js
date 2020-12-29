@@ -18,7 +18,7 @@ const DestinyPoints = () => <div />;
 
 const { NODE_ENV } = process.env;
 const url =
-  NODE_ENV === "production" ? "http://sw.xsimov.com" : "http://localhost:3000";
+  NODE_ENV === "production" ? "https://sw.xsimov.com" : "http://localhost:3000";
 
 const MainScreen = () => {
   const socketConnection = useRef(undefined);
