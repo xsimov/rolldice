@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import io from 'socket.io-client';
+import React, { useEffect, useState } from 'react';
 import { Stack } from '@chakra-ui/react';
 import { useDisclosure, useToast } from '@chakra-ui/react';
 import { calculateScore } from '../logic';
@@ -14,18 +13,14 @@ import { SettingsModal } from '../components/SettingsModal/SettingsModal';
 import { AppFooter } from '../components/AppFooter/AppFooter';
 import { AppHeader } from '../components/AppHeader/AppHeader';
 import { DestinyPoints } from '../components/DestinyPoints/DestinyPoints';
-
-const { NODE_ENV } = process.env;
-const url =
-  NODE_ENV === 'production' ? 'https://sw.xsimov.com' : 'http://localhost:3000';
+import { useAPIConnection } from '../externalComunications/APIConnection/APIConnectionHook';
 
 const MainScreen = () => {
-  const socketConnection = useRef(undefined);
+  const { socket } = useAPIConnection();
   const showNotification = useToast();
 
   useEffect(() => {
-    const socket = io(url);
-    socketConnection.current = socket;
+    if (!socket) return;
 
     socket.on('connect', async () => {
       const credentials = readCredentials();
@@ -98,7 +93,7 @@ const MainScreen = () => {
       setRoller(playerName);
       setScore(score);
     });
-  }, []);
+  }, [socket]);
 
   const [score, setScore] = useState({});
   const [playerName, setPlayerName] = useState('');
@@ -124,14 +119,14 @@ const MainScreen = () => {
     setScore(score);
     setRoller('You');
 
-    socketConnection.current.emit('rolledDice', {
+    socket.emit('rolledDice', {
       playerName,
       score,
     });
   };
 
   const sendCredentials = (playerName) => {
-    socketConnection.current.emit('credentials', {
+    socket.emit('credentials', {
       ...readCredentials(),
       playerName,
     });
