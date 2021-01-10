@@ -51,10 +51,8 @@ const DestinyPoints = ({ playersList }) => {
     destinyPointsActions,
     emptyDestinyPoints,
   );
-  console.log(destinyPoints.score);
 
   const flipSymbol = (symbolName) => {
-    console.log(symbolName);
     if (symbolName === 'lightSide') {
       return dispatch({ action: 'flipLightSymbol' });
     }

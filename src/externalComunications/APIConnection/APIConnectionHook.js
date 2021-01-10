@@ -1,15 +1,11 @@
-import React, { createContext, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import io from 'socket.io-client';
 import { getSocketURL } from './utils';
 
 const SocketContext = createContext();
 
 const APIConnectionProvider = ({ children }) => {
-  let socket;
-
-  useEffect(() => {
-    socket = io(getSocketURL());
-  }, []);
+  const socket = useMemo(() => io(getSocketURL()), []);
 
   return (
     <SocketContext.Provider

@@ -20,8 +20,6 @@ const MainScreen = () => {
   const showNotification = useToast();
 
   useEffect(() => {
-    if (!socket) return;
-
     socket.on('connect', async () => {
       const credentials = readCredentials();
       if (credentials.playerName) {

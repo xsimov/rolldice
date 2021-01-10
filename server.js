@@ -52,7 +52,7 @@ io.on('connection', (client) => {
   });
 
   client.on('disconnect', () => {
-    usersDB[this.player.playerToken] = { ...this.player, active: false };
+    // usersDB[this.player.playerToken] = { ...this.player, active: false };
 
     client.broadcast.emit('playerDisconnected', this.player);
   });
