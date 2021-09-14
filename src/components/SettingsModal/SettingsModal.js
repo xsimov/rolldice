@@ -16,13 +16,13 @@ import {
 
 const SettingsModal = ({
   isOpen,
-  playerName,
   setPlayerName,
   sendCredentials,
   closeSettingsModal: closeModal,
 }) => {
   const nameInput = useRef(null);
   const [formError, setFormError] = useState(false);
+  const [localPlayerName, setLocalPlayerName] = useState('');
 
   useEffect(() => {
     if (!isOpen) return;
@@ -39,13 +39,14 @@ const SettingsModal = ({
   const validateAndClose = (e) => {
     e && e.preventDefault();
 
-    if (playerName === '') {
+    if (localPlayerName === '') {
       setFormError(true);
       return;
     }
 
     setFormError(false);
-    sendCredentials(playerName);
+    setPlayerName(localPlayerName);
+    sendCredentials(localPlayerName);
     closeModal();
   };
 
@@ -62,9 +63,9 @@ const SettingsModal = ({
               <Input
                 ref={nameInput}
                 variant="flushed"
-                value={playerName}
+                value={localPlayerName}
                 onChange={(e) => {
-                  setPlayerName(e.target.value);
+                  setLocalPlayerName(e.target.value);
                 }}
               />
               <FormErrorMessage>This is mandatory for your ID</FormErrorMessage>

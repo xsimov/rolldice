@@ -133,7 +133,6 @@ const MainScreen = () => {
   return (
     <>
       <SettingsModal
-        playerName={playerName}
         setPlayerName={setPlayerName}
         closeSettingsModal={closeSettingsModal}
         sendCredentials={sendCredentials}
