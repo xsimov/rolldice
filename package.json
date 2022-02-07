@@ -6,14 +6,9 @@
     "@chakra-ui/react": "^1.0.0",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^10.0.1",
-    "@testing-library/user-event": "^7.1.2",
     "express": "^4.17.1",
     "framer-motion": "^2.9.4",
-    "jest-environment-jsdom-sixteen": "^1.0.3",
     "object-path": "0.11.5",
-    "prettier": "^1.19.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
@@ -21,6 +16,14 @@
     "socket.io": "^3.0.0",
     "socket.io-client": "^3.0.0",
     "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^10.0.1",
+    "@testing-library/user-event": "^7.1.2",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "nodemon": "^2.0.6",
+    "prettier": "^1.19.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,8 +46,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.6"
   }
 }
