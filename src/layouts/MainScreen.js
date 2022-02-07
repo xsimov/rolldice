@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Stack } from '@chakra-ui/react';
 import { useDisclosure, useToast } from '@chakra-ui/react';
-import { calculateScore } from '../logic';
-import {
-  readCredentials,
-  storeCredentials,
-} from '../externalComunications/storage';
+import { readCredentials } from '../externalComunications/storage';
+import { calculateScore } from '../domain';
 import { DiceSetSelector } from '../components/DiceSetSelector';
 import { PlayersList } from '../components/PlayersList/PlayersList';
 import { RolledScore } from '../components/RolledScore';
@@ -14,25 +11,15 @@ import { AppFooter } from '../components/AppFooter/AppFooter';
 import { AppHeader } from '../components/AppHeader/AppHeader';
 import { DestinyPoints } from '../components/DestinyPoints/DestinyPoints';
 import { useAPIConnection } from '../externalComunications/APIConnection/APIConnectionHook';
+import { authenticateUser } from '../domain/players/authenticateUser';
 
 const MainScreen = () => {
   const { socket } = useAPIConnection();
   const showNotification = useToast();
 
+  console.log(socket);
   useEffect(() => {
-    socket.on('connect', async () => {
-      const credentials = readCredentials();
-      if (credentials.playerName) {
-        socket.emit('credentials', credentials);
-        return;
-      }
-
-      openSettingsModal();
-    });
-
-    socket.on('tokenAssigned', (credentials) => {
-      storeCredentials(credentials);
-    });
+    authenticateUser(socket, openSettingsModal);
 
     socket.on('playersList', (list) => {
       setPlayersList(list);

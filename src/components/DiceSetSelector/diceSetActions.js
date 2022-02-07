@@ -1,4 +1,4 @@
-import { dice as allDice } from '../../logic';
+import { dice as allDice } from '../../domain';
 
 const emptyDiceSet = Object.keys(allDice).reduce(
   (counts, dieName) => ({

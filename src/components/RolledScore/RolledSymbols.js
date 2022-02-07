@@ -1,7 +1,7 @@
 import React from 'react';
 import * as scoreImages from '../../scoreImages';
 import { Flex } from '@chakra-ui/react';
-import { countsToVisual } from '../../logic';
+import { countsToVisual } from '../../domain';
 
 const RolledSymbols = ({ score, onSymbolClick = () => {} }) => {
   const visualResult = countsToVisual(score);

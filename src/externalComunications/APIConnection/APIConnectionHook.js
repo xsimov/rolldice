@@ -20,7 +20,7 @@ const APIConnectionProvider = ({ children }) => {
 
 const useAPIConnection = () => {
   if (!useContext(SocketContext)) {
-    throw 'useAPIConnection must be within a APIConnectionProvider!';
+    throw new Error('useAPIConnection must be within a APIConnectionProvider!');
   }
 
   return useContext(SocketContext);

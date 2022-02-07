@@ -2,8 +2,8 @@ import { Button } from '@chakra-ui/react';
 import React, { useReducer } from 'react';
 import { Center } from '@chakra-ui/react';
 import { RolledSymbols } from '../RolledScore/RolledSymbols';
-import { calculateScore } from '../../logic';
-import { dice } from '../../logic';
+import { calculateScore } from '../../domain';
+import { dice } from '../../domain';
 
 const destinyPointsActions = (destinyPoints, { action, numberOfPlayers }) => {
   switch (action) {
