@@ -6,7 +6,7 @@ COPY public /app/public
 COPY package.json .
 COPY yarn.lock .
 
-RUN yarn install
+RUN yarn install --production
 
 COPY src /app/src
 RUN yarn build
